@@ -18,8 +18,20 @@ export default {
       required: true
     }
   },
+  mounted() {
+    document.addEventListener("keydown", this.handleKeyDown);
+  },
+  beforeDestroy() {
+    document.removeEventListener("keydown", this.handleKeyDown);
+  },
   computed: {},
-  methods: {}
+  methods: {
+    handleKeyDown(evt) {
+      if (evt.code === "Escape") {
+        this.$emit("closeModal");
+      }
+    }
+  }
 };
 </script>
 
