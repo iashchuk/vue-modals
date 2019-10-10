@@ -1,11 +1,12 @@
 <template>
-  <div class="modal">
-    <div class="modal__container">
+  <div class="modal" @click="$emit('closeModal')">
+    <div class="modal__container" @click.stop>
       <div class="modal__header">
-        <span class="modal__title"> {{ title }} </span>
-        <span class="modal__button close" @click="$emit('close')">×</span>
+        <span class="modal__title">{{ title }}</span>
+        <span class="modal__button close" @click="$emit('closeModal')">×</span>
       </div>
       <div class="modal__body"></div>
+    </div>
   </div>
 </template>
 
@@ -19,12 +20,11 @@ export default {
   },
   computed: {},
   methods: {}
-}
+};
 </script>
 
 <style lang="scss" scoped>
-
-.modal{
+.modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,10 +32,10 @@ export default {
   top: 0;
   bottom: 0;
   left: 0;
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
   right: 0;
   z-index: 998;
-  background-color: rgba(00,00,00,.48);
+  background-color: rgba(00, 00, 00, 0.48);
 }
 
 .modal__container {
@@ -44,7 +44,7 @@ export default {
   padding: 20px 18px;
   background-color: #fff;
   border: 1px solid #dcdfe6;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   border-radius: 8px;
   z-index: 999;
   overflow: hidden;
