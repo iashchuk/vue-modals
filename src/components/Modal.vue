@@ -5,7 +5,9 @@
         <span class="modal__title">{{ title }}</span>
         <span class="modal__button close" @click="$emit('closeModal')">×</span>
       </div>
-      <div class="modal__body"></div>
+      <div class="modal__body">
+        <slot name="body">Default body</slot>
+      </div>
     </div>
   </div>
 </template>

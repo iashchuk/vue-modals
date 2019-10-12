@@ -4,7 +4,12 @@
       <section class="app__section">
         <div class="app__container container">
           <button class="btn btnPrimary" @click="modalFirst = !modalFirst">Show first modal</button>
-          <Modal v-if="modalFirst" :title="title" @closeModal="modalFirst=false" />
+          <Modal v-if="modalFirst" :title="title" @closeModal="modalFirst=false">
+            <div slot="body">
+              <p>Text</p>
+              <button>Click</button>
+            </div>
+          </Modal>
         </div>
       </section>
     </div>
