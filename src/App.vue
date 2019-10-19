@@ -5,7 +5,7 @@
         <div class="app__container container">
           <!-- Basic modal -->
           <button class="btn btnPrimary" @click="basicModal = !basicModal">Show basic modal</button>
-          <Modal v-show="basicModal" title="Basic Modal" @closeModal="basicModal=false">
+          <Modal v-show="basicModal" title="Basic Modal" @close="basicModal=false">
             <div slot="body">
               <p>Text</p>
               <button>Click</button>
@@ -14,15 +14,19 @@
 
           <!-- Form modal -->
           <button class="btn btnPrimary" @click="formModal.show = !formModal.show">Show form modal</button>
-          <Modal v-show="formModal.show" title="Form Modal" @closeModal="formModal.show=false">
+          <Modal v-show="formModal.show" title="Form Modal" @close="formModal.show=false">
             <form slot="body" @submit.prevent="submitForm">
               <label>Name:</label>
-              <input type="text" v-model="formModal.name" required/>
+              <input type="text" v-model="formModal.name" required />
               <label>E-mail:</label>
               <input type="text" v-model="formModal.email" required />
               <button type="submit" class="btn btnPrimary">Submit!</button>
             </form>
           </Modal>
+
+          <!-- Validate modal -->
+          <button class="btn btnPrimary" @click="validateModal = !validateModal">Show validate modal</button>
+          <Validate v-show="validateModal" @close="validateModal=false" />
         </div>
       </section>
     </div>
@@ -31,10 +35,12 @@
 
 <script>
 import Modal from "@/components/Modal.vue";
+import Validate from "@/components/Validate.vue";
 
 export default {
   components: {
-    Modal
+    Modal,
+    Validate
   },
   data() {
     return {
@@ -43,7 +49,8 @@ export default {
         show: false,
         name: "",
         email: ""
-      }
+      },
+      validateModal: false
     };
   },
   methods: {

@@ -1,10 +1,10 @@
 <template>
   <transition name="modal">
-    <div class="modal" @click="$emit('closeModal')">
+    <div class="modal" @click="$emit('close')">
       <div class="modal__container" @click.stop>
         <div class="modal__header">
           <span class="modal__title">{{ title }}</span>
-          <span class="modal__button close" @click="$emit('closeModal')">×</span>
+          <span class="modal__button close" @click="$emit('close')">×</span>
         </div>
         <div class="modal__body">
           <slot name="body">Default body</slot>
@@ -32,7 +32,7 @@ export default {
   methods: {
     handleKeyDown(evt) {
       if (evt.code === "Escape") {
-        this.$emit("closeModal");
+        this.$emit("close");
       }
     }
   }
