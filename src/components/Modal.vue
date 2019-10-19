@@ -4,7 +4,7 @@
       <div class="modal__container" @click.stop>
         <div class="modal__header">
           <span class="modal__title">{{ title }}</span>
-          <span class="modal__button close" @click="$emit('close')">×</span>
+          <CloseButton class="modal__button close" :click="() => $emit('close')" />
         </div>
         <div class="modal__body">
           <slot name="body">Default body</slot>
@@ -15,7 +15,12 @@
 </template>
 
 <script>
+import CloseButton from "@/components/CloseButton";
+
 export default {
+  components: {
+    CloseButton
+  },
   props: {
     title: {
       type: String,

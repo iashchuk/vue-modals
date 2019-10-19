@@ -10,8 +10,10 @@
           >Show basic modal</button>
           <Modal v-show="basicModal" title="Basic Modal" @close="basicModal=false">
             <div slot="body">
-              <p>Text</p>
-              <button>Click</button>
+              <p
+                class="app__info"
+              >Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. It is designed from the ground up to be incrementally adoptable, and can easily scale between a library and a framework depending on different use cases. It consists of an approachable core library that focuses on the view layer only, and an ecosystem of supporting libraries that helps you tackle complexity in large Single-Page Applications.</p>
+              <button type="submit" class="btn btnPrimary" @click="basicModal = false">OK</button>
             </div>
           </Modal>
 
@@ -46,7 +48,7 @@
         <div class="app__block" v-for="(item, index) in data" :key="index">
           <span class="app__text app__text_number">{{index + 1}}</span>
           <span class="app__text">{{item.name}}</span>
-          <span class="app__text">{{item.email}}</span>
+          <span class="app__text app__text_email">{{item.email}}</span>
           <span class="app__text">{{item.password}}</span>
           <span class="app__text">{{item.source}}</span>
         </div>
@@ -103,21 +105,30 @@ export default {
   justify-content: space-evenly;
 }
 
+.app__info {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
 .app__block {
-  width: 850px;
+  width: 1000px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
 
   .app__text {
-    width: 23%;
+    width: 20%;
     padding: 10px;
     text-overflow: ellipsis;
     overflow: hidden;
   }
 
   .app__text_number {
-    width: 8%;
+    width: 10%;
+  }
+
+  .app__text_email {
+    width: 30%;
   }
 }
 
