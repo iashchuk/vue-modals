@@ -28,13 +28,40 @@
         <p class="form__error" v-if="!$v.email.required">Field is required</p>
         <p class="form__error" v-if="!$v.email.email">Email is not correct</p>
       </div>
+      <!-- password -->
+      <div class="form__item" :class="{form__item_error: $v.password.$error}">
+        <label class="form__label">Password:</label>
+        <input
+          v-model="password"
+          class="form__input"
+          :class="{form__input_error: $v.password.$error}"
+          @change="$v.password.$touch()"
+        />
+        <p class="form__error" v-if="!$v.password.required">Field is required</p>
+        <p
+          class="form__error"
+          v-if="!$v.password.minLength"
+        >Password must have at least {{$v.password.$params.minLength.min}} symbols</p>
+      </div>
+      <!-- confirm password -->
+      <div class="form__item" :class="{form__item_error: $v.confirmPassword.$error}">
+        <label class="form__label">Confirm password:</label>
+        <input
+          v-model="confirmPassword"
+          class="form__input"
+          :class="{form__input_error: $v.confirmPassword.$error}"
+          @change="$v.confirmPassword.$touch()"
+        />
+        <p class="form__error" v-if="!$v.confirmPassword.required">Field is required</p>
+        <p class="form__error" v-if="!$v.confirmPassword.sameAsPassword">Passwords don't match</p>
+      </div>
       <button type="submit" class="btn btnPrimary">Submit!</button>
     </form>
   </Modal>
 </template>
 
 <script>
-import { required, minLength, email } from "vuelidate/lib/validators";
+import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 import Modal from "@/components/Modal";
 
 export default {
@@ -44,7 +71,9 @@ export default {
   data() {
     return {
       name: "",
-      email: ""
+      email: "",
+      password: "",
+      confirmPassword: ""
     };
   },
   validations: {
@@ -55,12 +84,22 @@ export default {
     email: {
       required,
       email
+    },
+    password: {
+      required,
+      minLength: minLength(6)
+    },
+    confirmPassword: {
+      required,
+      sameAsPassword: sameAs("password")
     }
   },
   methods: {
     onClose() {
       this.name = "";
       this.email = "";
+      this.password = "";
+      this.confirmPassword = "";
       this.$v.$reset();
       this.$emit("close");
     },
@@ -101,6 +140,7 @@ export default {
   position: absolute;
   bottom: 15px;
   left: 50%;
+  width: 100%;
   transform: translateX(-50%);
   display: none;
   font-size: 13px;
