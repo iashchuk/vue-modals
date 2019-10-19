@@ -35,7 +35,20 @@
             class="app__button btn btnPrimary"
             @click="validateModal = !validateModal"
           >Show validate modal</button>
-          <Validate v-show="validateModal" @close="validateModal=false" />
+          <Validate
+            v-show="validateModal"
+            @close="validateModal=false"
+            @submitValidateForm="submitValidateForm"
+          />
+        </div>
+      </section>
+      <section class="app__section">
+        <div class="app__block" v-for="(item, index) in data" :key="index">
+          <span class="app__text app__text_number">{{index + 1}}</span>
+          <span class="app__text">{{item.name}}</span>
+          <span class="app__text">{{item.email}}</span>
+          <span class="app__text">{{item.password}}</span>
+          <span class="app__text">{{item.source}}</span>
         </div>
       </section>
     </div>
@@ -59,18 +72,26 @@ export default {
         name: "",
         email: ""
       },
-      validateModal: false
+      validateModal: false,
+      data: []
     };
   },
   methods: {
     submitForm() {
-      console.log({
-        name: this.formModal.name,
-        email: this.formModal.email
-      });
-
+      this.data = [
+        ...this.data,
+        {
+          name: this.formModal.name,
+          email: this.formModal.email,
+          source: "FORM MODAL"
+        }
+      ];
+      this.formModal.show = false;
       this.formModal.name = "";
       this.formModal.email = "";
+    },
+    submitValidateForm(user) {
+      this.data = [...this.data, user];
     }
   }
 };
@@ -80,6 +101,24 @@ export default {
 .app__container {
   display: flex;
   justify-content: space-evenly;
+}
+
+.app__block {
+  width: 850px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  .app__text {
+    width: 23%;
+    padding: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .app__text_number {
+    width: 8%;
+  }
 }
 
 .app__button {

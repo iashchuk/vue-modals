@@ -32,6 +32,7 @@
       <div class="form__item" :class="{form__item_error: $v.password.$error}">
         <label class="form__label">Password:</label>
         <input
+          type="password"
           v-model="password"
           class="form__input"
           :class="{form__input_error: $v.password.$error}"
@@ -47,6 +48,7 @@
       <div class="form__item" :class="{form__item_error: $v.confirmPassword.$error}">
         <label class="form__label">Confirm password:</label>
         <input
+          type="password"
           v-model="confirmPassword"
           class="form__input"
           :class="{form__input_error: $v.confirmPassword.$error}"
@@ -108,9 +110,12 @@ export default {
       if (!this.$v.$invalid) {
         const user = {
           name: this.name,
-          email: this.email
+          email: this.email,
+          password: this.password,
+          source: "VALIDATE MODAL"
         };
-        console.log(user);
+
+        this.$emit("submitValidateForm", user);
         this.onClose();
       }
     }
