@@ -1,5 +1,5 @@
 <template>
-  <Modal title="Validate Modal" @close="$emit('close')">
+  <Modal title="Validate Modal" @close="onClose">
     <form clas="form" slot="body" @submit.prevent="onSubmit">
       <!-- name -->
       <div class="form__item" :class="{form__item_error: $v.name.$error}">
@@ -58,6 +58,12 @@ export default {
     }
   },
   methods: {
+    onClose() {
+      this.name = "";
+      this.email = "";
+      this.$v.$reset();
+      this.$emit("close");
+    },
     onSubmit() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
@@ -66,10 +72,7 @@ export default {
           email: this.email
         };
         console.log(user);
-        this.name = "";
-        this.email = "";
-        this.$v.$reset();
-        this.$emit("close");
+        this.onClose();
       }
     }
   }
