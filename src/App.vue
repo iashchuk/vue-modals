@@ -22,8 +22,8 @@
             class="app__button btn btnPrimary"
             @click="formModal.show = !formModal.show"
           >Show form modal</button>
-          <Modal v-show="formModal.show" title="Form Modal" @close="formModal.show=false">
-            <form slot="body" @submit.prevent="submitForm">
+          <Modal v-show="formModal.show" title="Form Modal" @close="closeModalForm">
+            <form slot="body" @submit.prevent="submitModalForm">
               <label>Name:</label>
               <input type="text" v-model="formModal.name" required />
               <label>E-mail:</label>
@@ -79,21 +79,28 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      this.data = [
-        ...this.data,
-        {
-          name: this.formModal.name,
-          email: this.formModal.email,
-          source: "FORM MODAL"
-        }
-      ];
-      this.formModal.show = false;
-      this.formModal.name = "";
-      this.formModal.email = "";
+    closeModalForm() {
+      this.formModal = {
+        show: false,
+        name: "",
+        email: ""
+      };
     },
-    submitValidateForm(user) {
-      this.data = [...this.data, user];
+    addUserData(userData) {
+      this.data = [...this.data, userData];
+    },
+    submitModalForm() {
+      const userData = {
+        name: this.formModal.name,
+        email: this.formModal.email,
+        source: "FORM MODAL"
+      };
+      this.addUserData(userData);
+      this.closeModalForm();
+    },
+
+    submitValidateForm(userData) {
+      this.addUserData(userData);
     }
   }
 };
