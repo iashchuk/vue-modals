@@ -28,21 +28,17 @@
         v-if="!$v.password.minLength"
       >Password must have at least {{$v.password.$params.minLength.min}} symbols</p>
     </div>
-    <Field v-model="text" />
-    {{email}} - {{text}}
-    <button type="submit" class="btn btnPrimary">Submit!</button>
+       <button type="submit" class="btn btnPrimary">Submit!</button>
   </form>
 </template>
 
 <script>
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 import Modal from "../../ui/Modal";
-import Field from "../../ui/Field";
 
 export default {
   components: {
-    Modal,
-    Field
+    Modal
   },
   beforeDestroy() {
     this.onReset();
@@ -51,7 +47,6 @@ export default {
     return {
       email: "",
       password: "",
-      text: ""
     };
   },
   validations: {
@@ -60,10 +55,6 @@ export default {
       email
     },
     password: {
-      required,
-      minLength: minLength(6)
-    },
-    text: {
       required,
       minLength: minLength(6)
     }

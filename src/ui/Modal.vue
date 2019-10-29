@@ -1,10 +1,10 @@
 <template>
   <transition name="modal">
-    <div class="modal" @click="$emit('close')">
+    <div class="modal" @click="$emit('onClose')">
       <div class="modal__container" @click.stop>
         <div class="modal__header">
           <span class="modal__title">{{ title }}</span>
-          <CloseButton class="modal__button close" :click="() => $emit('close')" />
+          <CloseButton class="modal__button close" :click="() => $emit('onClose')" />
         </div>
         <div class="modal__body">
           <slot name="body">Default body</slot>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CloseButton from "@/components/CloseButton";
+import CloseButton from "./CloseButton";
 
 export default {
   components: {
@@ -37,7 +37,7 @@ export default {
   methods: {
     handleKeyDown(evt) {
       if (evt.code === "Escape") {
-        this.$emit("close");
+        this.$emit("onClose");
       }
     }
   }
