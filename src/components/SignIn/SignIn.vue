@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal v-if="!signInSuccessed" title="Sign In" @onClose="closeSignIn">
+    <Modal v-if="!signInSuccessed" title="Use your account" @onClose="closeSignIn">
       <div class="sign__body" slot="body">
         <img class="sign__logo" alt="Vue logo" src="../../assets/logo.png" />
         <SignInForm @onSubmit="submitSignInForm" />
@@ -10,7 +10,7 @@
 
     <SuccessModal
       v-show="signInSuccessed"
-      title="Hello!"
+      title="You are authorized!"
       :email="successData.email"
       :password="successData.password"
       :onClose="closeSignIn"
@@ -74,7 +74,7 @@ export default {
   background: none;
 
   &:hover {
-    opacity: 0.7;
+    color: #494ce8;
   }
 }
 </style>

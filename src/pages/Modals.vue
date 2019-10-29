@@ -66,12 +66,12 @@ export default {
       this.data = [...this.data, userData];
     },
     submitSignInModal(userData) {
-      this.addUserData({ ...userData, source: "FORM MODAL" });
+      this.addUserData({ ...userData, source: "SIGN IN MODAL" });
       this.signInModal = false;
     },
 
     submitSignUpModal(userData) {
-      this.addUserData({ ...userData, source: "VALIDATE MODAL" });
+      this.addUserData({ ...userData, source: "SIGN UP MODAL" });
       this.signUpModal = false;
     }
   }

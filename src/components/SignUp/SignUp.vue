@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Modal v-if="!signUpSuccessed" title="Sign Up" @onClose="closeSignUp">
+    <Modal v-if="!signUpSuccessed" title="Create a new account" @onClose="closeSignUp">
       <div class="sign__body" slot="body">
         <SignUpForm @onSubmit="submitSignUpForm" />
-        <router-link class="sign__button" to="/auth/signin">Sign In</router-link>
+        <router-link class="sign__button" to="/auth/signin">Login to Existing Account</router-link>
       </div>
     </Modal>
 
     <SuccessModal
       v-show="signUpSuccessed"
-      title="Sign up is successed"
+      title="Your account has been created:"
       :name="successData.name"
       :email="successData.email"
       :password="successData.password"
@@ -71,7 +71,7 @@ export default {
   background: none;
 
   &:hover {
-    opacity: 0.7;
+    color: #494ce8;
   }
 }
 </style>
