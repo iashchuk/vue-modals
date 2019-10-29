@@ -1,8 +1,8 @@
 <template>
   <div class="page wrapper-content wrapper-content--fixed">
     <div class="page__container">
-      <router-link class="page__link" to="/auth/signin">Войти</router-link>
-      <router-link class="page__link page__link_reverse" to="/auth/signup">Регистрация</router-link>
+      <router-link class="page__link" to="/auth/signin">Sign in</router-link>
+      <router-link class="page__link page__link_reverse" to="/auth/signup">Sign Up</router-link>
       <router-view></router-view>
     </div>
   </div>

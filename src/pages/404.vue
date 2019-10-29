@@ -15,6 +15,9 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  background-image: url("../assets/github.png");
+  background-size: contain;
+  background-position: -400px -50px;
 }
 
 .page__container {
