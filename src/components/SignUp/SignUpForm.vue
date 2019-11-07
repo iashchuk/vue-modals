@@ -1,75 +1,33 @@
 <template>
   <form clas="form" slot="body" @submit.prevent="onSubmit">
-    <!-- name -->
-    <div class="form__item" :class="{form__item_error: $v.name.$error}">
-      <label class="form__label">Name:</label>
-      <input
-        v-model="name"
-        class="form__input"
-        :class="{form__input_error: $v.name.$error}"
-        @change="$v.name.$touch()"
-      />
-      <p class="form__error" v-if="!$v.name.required">Field is required</p>
-      <p
-        class="form__error"
-        v-if="!$v.name.minLength"
-      >Name must have at least {{$v.name.$params.minLength.min}} letters</p>
-    </div>
-    <!-- email -->
-    <div class="form__item" :class="{form__item_error: $v.email.$error}">
-      <label class="form__label">E-mail:</label>
-      <input
-        v-model="email"
-        class="form__input"
-        :class="{form__input_error: $v.email.$error}"
-        @change="$v.email.$touch()"
-      />
-      <p class="form__error" v-if="!$v.email.required">Field is required</p>
-      <p class="form__error" v-if="!$v.email.email">Email is not correct</p>
-    </div>
-    <!-- password -->
-    <div class="form__item" :class="{form__item_error: $v.password.$error}">
-      <label class="form__label">Password:</label>
-      <input
-        type="password"
-        v-model="password"
-        class="form__input"
-        :class="{form__input_error: $v.password.$error}"
-        @change="$v.password.$touch()"
-      />
-      <p class="form__error" v-if="!$v.password.required">Field is required</p>
-      <p
-        class="form__error"
-        v-if="!$v.password.minLength"
-      >Password must have at least {{$v.password.$params.minLength.min}} symbols</p>
-    </div>
-    <!-- confirm password -->
-    <div class="form__item" :class="{form__item_error: $v.confirmPassword.$error}">
-      <label class="form__label">Confirm password:</label>
-      <input
-        type="password"
-        v-model="confirmPassword"
-        class="form__input"
-        :class="{form__input_error: $v.confirmPassword.$error}"
-        @change="$v.confirmPassword.$touch()"
-      />
-      <p class="form__error" v-if="!$v.confirmPassword.required">Field is required</p>
-      <p class="form__error" v-if="!$v.confirmPassword.sameAsPassword">Passwords don't match</p>
-    </div>
+    <TextField label="Name" v-model="name" :v="$v.name" />
+    <TextField label="Surname" v-model="surname" :v="$v.surname" />
+    <EmailField v-model="email" :v="$v.email" />
+    <PasswordField v-model="password" :v="$v.password" />
+    <PasswordField label="Confirm password" v-model="confirmPassword" :v="$v.confirmPassword" />
     <button type="submit" class="btn btnPrimary">Submit!</button>
   </form>
 </template>
 
 <script>
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
+import TextField from "../../ui/form/TextField";
+import EmailField from "../../ui/form/EmailField";
+import PasswordField from "../../ui/form/PasswordField";
 
 export default {
+  components: {
+    TextField,
+    EmailField,
+    PasswordField
+  },
   beforeDestroy() {
     this.onReset();
   },
   data() {
     return {
       name: "",
+      surname: "",
       email: "",
       password: "",
       confirmPassword: ""
@@ -79,6 +37,10 @@ export default {
     name: {
       required,
       minLength: minLength(4)
+    },
+    surname: {
+      required,
+      minLength: minLength(2)
     },
     email: {
       required,
@@ -96,6 +58,7 @@ export default {
   methods: {
     onReset() {
       this.name = "";
+      this.surname = "";
       this.email = "";
       this.password = "";
       this.confirmPassword = "";
@@ -106,6 +69,7 @@ export default {
       if (!this.$v.$invalid) {
         const user = {
           name: this.name,
+          surname: this.surname,
           email: this.email,
           password: this.password
         };

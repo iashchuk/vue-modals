@@ -13,7 +13,10 @@
       class="field__text field__text_error"
       v-if="!v.minLength && v.$params.minLength"
     >Password must have at least {{v.$params.minLength.min}} symbols</p>
-    <p class="field__text field__text_error" v-if="!v.sameAsPassword">Passwords don't match</p>
+    <p
+      class="field__text field__text_error"
+      v-if="v.required &&  !v.sameAsPassword"
+    >Passwords don't match</p>
   </div>
 </template>
 
@@ -39,6 +42,7 @@ export default {
   computed: {
     password: {
       get() {
+        console.log(this.v);
         return this.value;
       },
       set(value) {

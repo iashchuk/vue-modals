@@ -2,7 +2,7 @@
   <section class="lisy">
     <div class="list__block" v-for="(item, index) in data" :key="index">
       <span class="list__text list__text_number">{{index + 1}}</span>
-      <span class="list__text">{{item.name}}</span>
+      <span class="list__text">{{item.name}} {{item.surname}}</span>
       <span class="list__text list__text_email">{{item.email}}</span>
       <span class="list__text">{{item.password}}</span>
       <span class="list__text">{{item.source}}</span>

@@ -11,6 +11,7 @@
       v-show="signUpSuccessed"
       title="Your account has been created:"
       :name="successData.name"
+      :surname="successData.surname"
       :email="successData.email"
       :password="successData.password"
       :onClose="closeSignUp"
@@ -27,6 +28,7 @@ import SuccessModal from "../SignIn/SuccessModal";
 const defaultSuccessData = {
   email: "",
   name: "",
+  surname: "",
   password: ""
 };
 

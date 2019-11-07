@@ -6,6 +6,10 @@
           <span class="success__title">Name:</span>
           {{name}}
         </p>
+        <p v-if="surname" class="success__text">
+          <span class="success__title">Surname:</span>
+          {{surname}}
+        </p>
         <p class="success__text">
           <span class="success__title">E-mail:</span>
           {{email}}
@@ -33,6 +37,9 @@ export default {
       required: true
     },
     name: {
+      type: String
+    },
+    surname: {
       type: String
     },
     email: {

@@ -1,44 +1,22 @@
 <template>
   <form clas="form" slot="body" @submit.prevent="onSubmit">
-    <!-- email -->
-    <div class="form__item" :class="{form__item_error: $v.email.$error}">
-      <label class="form__label">E-mail:</label>
-      <input
-        v-model="email"
-        class="form__input"
-        :class="{form__input_error: $v.email.$error}"
-        @change="$v.email.$touch()"
-      />
-      <p class="form__error" v-if="!$v.email.required">Field is required</p>
-      <p class="form__error" v-if="!$v.email.email">Email is not correct</p>
-    </div>
-    <!-- password -->
-    <div class="form__item" :class="{form__item_error: $v.password.$error}">
-      <label class="form__label">Password:</label>
-      <input
-        type="password"
-        v-model="password"
-        class="form__input"
-        :class="{form__input_error: $v.password.$error}"
-        @change="$v.password.$touch()"
-      />
-      <p class="form__error" v-if="!$v.password.required">Field is required</p>
-      <p
-        class="form__error"
-        v-if="!$v.password.minLength"
-      >Password must have at least {{$v.password.$params.minLength.min}} symbols</p>
-    </div>
-       <button type="submit" class="btn btnPrimary">Submit!</button>
+    <EmailField v-model="email" :v="$v.email" />
+    <PasswordField v-model="password" :v="$v.password" />
+    <button type="submit" class="btn btnPrimary">Submit!</button>
   </form>
 </template>
 
 <script>
 import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 import Modal from "../../ui/Modal";
+import EmailField from "../../ui/form/EmailField";
+import PasswordField from "../../ui/form/PasswordField";
 
 export default {
   components: {
-    Modal
+    Modal,
+    EmailField,
+    PasswordField
   },
   beforeDestroy() {
     this.onReset();
@@ -46,7 +24,7 @@ export default {
   data() {
     return {
       email: "",
-      password: "",
+      password: ""
     };
   },
   validations: {
