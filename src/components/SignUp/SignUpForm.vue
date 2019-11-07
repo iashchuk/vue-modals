@@ -5,7 +5,7 @@
     <EmailField v-model="email" :v="$v.email" />
     <PasswordField v-model="password" :v="$v.password" />
     <PasswordField label="Confirm password" v-model="confirmPassword" :v="$v.confirmPassword" />
-    <button type="submit" class="btn btnPrimary">Submit!</button>
+    <Button type="submit">Submit!</Button>
   </form>
 </template>
 
@@ -14,12 +14,14 @@ import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 import TextField from "../../ui/form/TextField";
 import EmailField from "../../ui/form/EmailField";
 import PasswordField from "../../ui/form/PasswordField";
+import Button from "../../ui/buttons/Button";
 
 export default {
   components: {
     TextField,
     EmailField,
-    PasswordField
+    PasswordField,
+    Button
   },
   beforeDestroy() {
     this.onReset();

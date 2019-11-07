@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 .sign__body {
-  min-height: 645px;
+  min-height: 757px;
 }
 
 .sign__logo {
@@ -66,7 +66,7 @@ export default {
 .sign__button {
   display: inline-block;
   width: 100%;
-  margin-top: 59px;
+  margin-top: 176px;
   margin-bottom: 5px;
   padding: 15px 0;
   border: 0;

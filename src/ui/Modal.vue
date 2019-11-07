@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CloseButton from "./CloseButton";
+import CloseButton from "./buttons/CloseButton";
 
 export default {
   components: {

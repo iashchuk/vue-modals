@@ -3,30 +3,21 @@
     <section class="page__section">
       <div class="page__container container">
         <!-- Basic modal -->
-        <button
-          class="page__button btn btnPrimary"
-          @click="basicModal = !basicModal"
-        >Show basic modal</button>
+        <Button class="page__button" @click="basicModal = !basicModal">Show basic modal</Button>
 
         <Modal v-show="basicModal" title="Basic Modal" @onClose="basicModal=false">
           <ModalContent slot="body" @onConfirm="basicModal = false" />
         </Modal>
 
         <!-- Sign In modal -->
-        <button
-          class="page__button btn btnPrimary"
-          @click="signInModal = !signInModal"
-        >Show sign in modal</button>
+        <Button class="page__button" @click="signInModal = !signInModal">Show sign in modal</Button>
 
         <Modal v-if="signInModal" title="Sign In Modal" @onClose="signInModal=false">
           <SignInForm slot="body" @onSubmit="submitSignInModal" />
         </Modal>
 
         <!-- Sign Up modal -->
-        <button
-          class="page__button btn btnPrimary"
-          @click="signUpModal = !signUpModal"
-        >Show sign up modal</button>
+        <Button class="page__button" @click="signUpModal = !signUpModal">Show sign up modal</Button>
 
         <Modal v-if="signUpModal" title="Sign Up Modal" @onClose="signUpModal=false">
           <SignUpForm slot="body" @onSubmit="submitSignUpModal" />
@@ -44,6 +35,7 @@ import SignUpForm from "../components/SignUp/SignUpForm";
 import SignInForm from "../components/SignIn/SignInForm";
 import ModalContent from "../components/Common/ModalContent";
 import DataList from "../components/Common/DataList";
+import Button from "../ui/buttons/Button";
 
 export default {
   components: {
@@ -51,7 +43,8 @@ export default {
     SignUpForm,
     SignInForm,
     ModalContent,
-    DataList
+    DataList,
+    Button
   },
   data() {
     return {
